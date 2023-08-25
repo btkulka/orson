@@ -1,32 +1,19 @@
-import OrchestorBuilder from "../builders/OrchestratorBuilder";
-import GameDatabaseGateway from "../data/GameDatabaseGateway";
-import Orchestrator from "../neurons/Orchestrator";
-import Game from "./Game";
-import Player from "./Player";
+import GameDatabaseGateway, { GameDatabaseGatewayProps } from "../data/GameDatabaseGateway";
+
 
 export default class Session {
     public readonly id: string;
-    public readonly game: Game;
 
-    private database: DatabaseORM;
-    private orchestrator: Orchestrator;
-
-    public map: Map;
-    public players: Player[];
-    public knowledgeBase: KnowledgeBase;
+    private db: GameDatabaseGateway;
 
     constructor(
         id: string,
-        gameId: Game
+        gameId: string
     ) {
         this.id = id;
-        this.database = new GameDatabaseGateway(gameId)
-        this.loadPlayers = this.database.loadPlayers();
-        this.loadMap = this.database.loadMap();
-        this.loadKnowledgeBase = this.database.loadKnowledgeBase();
-        this.orchestrator = OrchestorBuilder.build(
-            game.id,
-            knowledgeBase
-        );
+        this.db = new GameDatabaseGateway({
+            gameId: gameId,
+            baseUrl: ''
+        } as GameDatabaseGatewayProps)
     }
 }

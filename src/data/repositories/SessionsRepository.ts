@@ -9,7 +9,7 @@ export default class SessionsRepository {
         this.cache = new Hashmap<Session>("SessionsCache");
     }
 
-    private getSessionByGameId(gameId: string) {
+    public getSessionByGameId(gameId: string) {
         var session: Session = this.cache.get(gameId);
         if (!session) {
             session = this.createSession(gameId);
@@ -17,8 +17,8 @@ export default class SessionsRepository {
         return session;
     }
 
-    private createSession(gameId: string): Session {
+    public createSession(gameId: string): Session {
         // create session
-        return undefined;
+        throw Error("unimplemented");
     }
 }

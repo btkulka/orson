@@ -1,0 +1,10 @@
+{
+    "OpenAi": {
+        "apiKey": "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",
+        "defaultCompletionParams": {
+            "model": "gpt-3.5-turbo",
+            "temperature": 0.5,
+            "top_p": 0.8
+        }
+    }
+}

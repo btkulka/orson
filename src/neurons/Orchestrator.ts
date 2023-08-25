@@ -1,10 +1,10 @@
-import TrainingPrompt from "../classes/TrainingPrompt";
+import TrainingDirective from "../classes/TrainingDirective";
 import AbstractNeuron from "./abstracts/AbstractNeuron";
-import AbstractScribeNeuron from "./abstracts/AbstractScribeNeuron";
 import AbstractRandomForestNeuralNetwork from "../networks/abstracts/AbstractRandomForestNeuralNetwork";
 import AbstractRecurrentNeuralNetwork from "../networks/abstracts/core/AbstractRecurrentNeuralNetwork";
 import RnnEnvironment from "../networks/RnnEvironment";
 import RfnnDecisionProcessor from "../networks/RfnnDecisionProcessor";
+import NarratorNeuron from "./NarratorNeuron";
 
 export default class Orchestrator extends AbstractNeuron {
 
@@ -14,15 +14,15 @@ export default class Orchestrator extends AbstractNeuron {
     // child neurons
     decisionProcessor: RfnnDecisionProcessor;
     environmentSimulator: RnnEnvironment;
-    narrator: AbstractScribeNeuron;
+    narrator: NarratorNeuron;
 
     constructor(
         name: string,
         decisionProcessor: AbstractRandomForestNeuralNetwork,
-        narrator: AbstractScribeNeuron,
+        narrator: NarratorNeuron,
         environmentSimulator: AbstractRecurrentNeuralNetwork
     ) {
-        super(name, []);
+        super(name);
         this.name = name;
         this.decisionProcessor = decisionProcessor;
         this.environmentSimulator = environmentSimulator;
@@ -33,14 +33,7 @@ export default class Orchestrator extends AbstractNeuron {
 
     }
 
-    public train(prompts: TrainingPrompt<AbstractNeuron>[]): void {
+    public train(prompts: TrainingDirective[]): void {
 
-        let decisionProcessorPrompts = prompts.filter((prompt) => prompt.isOfNeuralType(typeof AbstractRandomForestNeuralNetwork));
-        let narratorPrompts = prompts.filter((prompt) => prompt.isOfNeuralType(typeof AbstractScribeNeuron));
-        let environmentSimulatorPrompts = prompts.filter((prompt) => prompt.isOfNeuralType(typeof AbstractRecurrentNeuralNetwork));
-
-        this.decisionProcessor.train(decisionProcessorPrompts);
-        this.narrator.train(narratorPrompts);
-        this.environmentSimulator.train(environmentSimulatorPrompts);
     }
 }

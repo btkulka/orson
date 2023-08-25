@@ -25,7 +25,7 @@ export default class OrchestorBuilder {
     ): Orchestrator {
 
         let decisionProcessor: RfnnDecisionProcessor = RfnnDecisionProcessorBuilder.build(Defaults.DecisionProcessorName, []);
-        let narrator: NarratorNeuron = new NarratorNeuron(Defaults.NarratorName, []);
+        let narrator: NarratorNeuron = new NarratorNeuron(Defaults.NarratorName);
         let environmentSimulator: RnnEnvironment = RnnEnvironmentBuilder.build(Defaults.EnvironmentSimulatorName, []);
 
         return new Orchestrator(

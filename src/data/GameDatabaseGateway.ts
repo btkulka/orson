@@ -6,12 +6,9 @@ import RoomsService from "./services/RoomsService";
 import ScenesService from "./services/ScenesService";
 import UsersService from "./services/UsersService";
 
-export class GameDatabaseGatewayProps {
-    public baseUrl: string;
-
-    constructor(props: any = {}) {
-        this.baseUrl = props.baseUrl;
-    }
+export interface GameDatabaseGatewayProps {
+    gameId: string;
+    baseUrl: string;
 }
 
 export default class GameDatabaseGateway {

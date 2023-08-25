@@ -1,4 +1,4 @@
-import TrainingPrompt from "../classes/TrainingPrompt";
+import TrainingDirective from "../classes/TrainingDirective";
 import RnnEnvironment from "../networks/RnnEvironment";
 import AbstractNeuron from "../neurons/abstracts/AbstractNeuron";
 
@@ -17,7 +17,7 @@ export default class RnnEnvironmentBuilder {
 
     public static build(
         name: string,
-        trainingPrompts: TrainingPrompt<AbstractNeuron>[]
+        trainingPrompts: TrainingDirective[]
     ): RnnEnvironment {
 
         let neurons: AbstractNeuron[] = [];

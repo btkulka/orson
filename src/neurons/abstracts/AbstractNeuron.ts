@@ -1,20 +1,15 @@
-import TrainingPrompt from "../../classes/TrainingPrompt";
+import TrainingDirective from "../../classes/TrainingDirective";
 
 export default abstract class AbstractNeuron {
 
     readonly name: string;
-    knowledge: string[] = [];
+    directives: string[] = [];
 
     constructor(
-        name: string,
-        trainingPrompts: TrainingPrompt<AbstractNeuron>[] = []
+        name: string
     ) {
         this.name = name;
-
-        if (trainingPrompts.length > 0) {
-            this.train(trainingPrompts);
-        }
     }
 
-    abstract train(prompts: TrainingPrompt<AbstractNeuron>[]): void;
+    abstract train(prompts: TrainingDirective[]): void;
 }

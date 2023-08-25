@@ -1,11 +1,19 @@
-import TrainingPrompt from "../classes/TrainingPrompt";
-import AbstractScribeNeuron from "./abstracts/AbstractScribeNeuron";
+import { ChatMessage } from "chatgpt";
+import LanguageModelNeuron from "./abstracts/LanguageModelNeuron";
+import TrainingDirective from "../classes/TrainingDirective";
 
-export default class NarratorNeuron extends AbstractScribeNeuron {
+export default class NarratorNeuron extends LanguageModelNeuron {
     constructor(
-        name: string,
-        trainingPrompts: TrainingPrompt<NarratorNeuron>[]
+        name: string
     ) {
-        super(name, trainingPrompts);
+        super(name);
+    }
+
+    async train(prompts: TrainingDirective[]): Promise<ChatMessage[]> {
+        throw Error("unimplemented");
+    }
+
+    async sendMessage(message: string, options: any): Promise<ChatMessage> {
+        throw Error("unimplemented");
     }
 }

@@ -1,4 +1,4 @@
-import TrainingPrompt from "../classes/TrainingPrompt";
+import TrainingDirective from "../classes/TrainingDirective";
 import RfnnDecisionProcessor from "../networks/RfnnDecisionProcessor";
 import AbstractDecisionTreeNeuralNetwork from "../networks/abstracts/AbstractDecisionTreeNeuralNetwork";
 import AbstractNeuron from "../neurons/abstracts/AbstractNeuron";
@@ -18,7 +18,7 @@ export default class RfnnDecisionProcessorBuilder {
 
     public static build(
         name: string,
-        trainingPrompts: TrainingPrompt<AbstractNeuron>[]
+        trainingPrompts: TrainingDirective[]
     ): RfnnDecisionProcessor {
 
         let decisionTrees: AbstractDecisionTreeNeuralNetwork[] = [];

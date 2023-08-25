@@ -1,14 +1,14 @@
-import { DatabaseORMProps } from "../data/GameDatabaseGateway";
+import { GameDatabaseGatewayProps } from "../data/GameDatabaseGateway";
 
 export default class Profile {
     public readonly id: string;
     public name: string;
-    public databaseProps: DatabaseORMProps;
+    public databaseProps: GameDatabaseGatewayProps;
 
     constructor(
         id: string,
         name: string,
-        databaseProps: DatabaseORMProps
+        databaseProps: GameDatabaseGatewayProps
     ) {
         this.id = id;
         this.name = name;

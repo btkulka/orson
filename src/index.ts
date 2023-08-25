@@ -1,12 +1,28 @@
-import App from "./app";
-import CreateGameRequest from "./requests/game/CreateGameRequest";
+import * as fs from 'fs';
+import KnowledgeNeuron from './neurons/KnowledgeNeuron';
+import TrainingDirective from './classes/TrainingDirective';
+import Config from './classes/generics/Config';
 
-const app = App.getInstance();
+declare global {
+    var config: Config;
+}
 
-const createGameRequest = new CreateGameRequest(
-    "Sandbox",
-    "Sandbox"
-);
+globalThis.config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
 
-let game = app.createGameForGuild(createGameRequest);
-let session = app.getGameSession(game.id);
+const main = async () => {
+    let prompt = fs.readFileSync('../data/prompts/EncyclopediaDirective.txt', 'utf-8');
+    let trainingPrompts: TrainingDirective[] = [
+        new TrainingDirective(
+            "1",
+            1,
+            prompt
+        )
+    ];
+
+    const encylopedia = new KnowledgeNeuron("jones");
+    await encylopedia.train(trainingPrompts);
+
+    await encylopedia.sendMessage("What is the oldest tree in Mythosia?");
+}
+
+main();

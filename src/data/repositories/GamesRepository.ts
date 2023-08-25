@@ -12,5 +12,6 @@ export default class GamesRepository {
 
     public createGame(request: CreateGameRequest): Game {
         // create the game
+        throw new Error("unimplemented");
     }
 }
